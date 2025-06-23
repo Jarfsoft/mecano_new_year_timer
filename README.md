@@ -1,70 +1,124 @@
-# Getting Started with Create React App
+# Scheduled Music Player - Un Año Más
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React application that automatically plays "Un Año Más" by Mecano at 23:56:26 on December 31st (any year). Perfect for New Year countdown events and celebrations.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Scheduled Playback**: Automatically plays "Un Año Más" at 23:56:26 on December 31st
+- **Smart Offset Calculation**: If the page loads after the scheduled time but within the song's duration, it starts playback from the appropriate timestamp
+- **Real-time Countdown**: Shows a live countdown timer when waiting for the scheduled time
+- **Responsive Design**: Works on desktop and mobile devices
+- **Year-Agnostic**: Works every year automatically - no need to update the date
 
-### `npm start`
+## How It Works
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **Before Scheduled Time**: The app shows a countdown timer and waits
+2. **At 23:56:26 on December 31st**: "Un Año Más" automatically starts playing
+3. **Late Loading**: If you load the page after 23:56:26 but before the song ends (4:29 later), it starts from the correct offset
+4. **After Song Duration**: The app shows that the scheduled time has passed
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Quick Start
 
-### `npm test`
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Add the song file**:
+   Place "Un Año Más" by Mecano in `public/audio/un-ano-mas-mecano.mp3`
 
-### `npm run build`
+3. **Start the development server**:
+   ```bash
+   npm start
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. **Open your browser** and navigate to `http://localhost:3000`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Configuration
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The app is pre-configured for "Un Año Más" by Mecano:
 
-### `npm run eject`
+```javascript
+export const CONFIG = {
+  // Automatically sets to next December 31st at 23:56:26
+  SCHEDULED_TIME: getNextDecember31st(),
+  
+  // Song duration: 269 seconds (4 minutes 29 seconds)
+  SONG_DURATION: 269000,
+  
+  // Song file location
+  SONG_URL: '/audio/un-ano-mas-mecano.mp3',
+  
+  // Song details
+  SONG_TITLE: 'Un Año Más',
+  ARTIST: 'Mecano',
+  EVENT_TITLE: 'New Year Countdown - Un Año Más'
+};
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Audio File Setup
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Get the song**: Obtain "Un Año Más" by Mecano (269 seconds duration)
+2. **Rename it**: Save as `un-ano-mas-mecano.mp3`
+3. **Place it**: Put the file in `public/audio/` folder
+4. **Test it**: The app will automatically use the file
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### File Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+public/
+└── audio/
+    ├── README.md
+    └── un-ano-mas-mecano.mp3  ← Your song file here
+```
 
-## Learn More
+## Use Cases
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **New Year Countdown**: Perfect for playing "Un Año Más" at the traditional Spanish New Year time
+- **Family Gatherings**: Synchronize the song across multiple devices
+- **Live Events**: Use as background music for New Year celebrations
+- **Personal Countdown**: Create your own New Year ritual
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Technical Details
 
-### Code Splitting
+- **React Hooks**: Uses `useState`, `useEffect`, and `useRef` for state management
+- **Time Calculations**: Precise millisecond-level timing for accurate playback
+- **Audio API**: Uses HTML5 `<audio>` element with programmatic control
+- **Responsive CSS**: Modern styling with gradient backgrounds and card layouts
+- **Auto-Year Detection**: Automatically calculates the next December 31st
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Browser Compatibility
 
-### Analyzing the Bundle Size
+- Chrome/Edge (recommended)
+- Firefox
+- Safari
+- Mobile browsers
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Troubleshooting
 
-### Making a Progressive Web App
+### Audio Won't Play
+- Ensure `un-ano-mas-mecano.mp3` is in the `public/audio/` folder
+- Check that the file is not corrupted
+- Ensure the browser allows autoplay (may require user interaction)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Timing Issues
+- The app uses the client's system time
+- For precise timing, ensure the client's clock is synchronized
+- The song will play at exactly 23:56:26 on December 31st
 
-### Advanced Configuration
+### Build for Production
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Song Information
 
-### Deployment
+- **Title**: "Un Año Más"
+- **Artist**: Mecano
+- **Duration**: 269 seconds (4 minutes 29 seconds)
+- **Release**: 1988
+- **Genre**: Pop
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## License
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is open source and available under the MIT License.

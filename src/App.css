@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
 .App-logo {
@@ -14,14 +21,20 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  max-width: 600px;
+  width: 100%;
+}
+
+.App-header h1 {
+  color: #2d3748;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
 .App-link {
@@ -34,5 +47,157 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.scheduled-music-player {
+  width: 100%;
+}
+
+.player-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.info-section {
+  text-align: left;
+  background: #f7fafc;
+  padding: 25px;
+  border-radius: 15px;
+  border-left: 5px solid #667eea;
+}
+
+.info-section h2 {
+  color: #2d3748;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.schedule-info p {
+  margin: 10px 0;
+  color: #4a5568;
+  font-size: 1rem;
+}
+
+.schedule-info strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.status-section {
+  text-align: center;
+  padding: 25px;
+  background: #f7fafc;
+  border-radius: 15px;
+  border-left: 5px solid #48bb78;
+}
+
+.status-message {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.countdown {
+  margin-top: 20px;
+}
+
+.countdown h3 {
+  color: #2d3748;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.countdown-timer {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #667eea;
+  font-family: 'Courier New', monospace;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 3px solid #667eea;
+}
+
+.playback-info {
+  margin-top: 20px;
+}
+
+.playback-info p {
+  color: #4a5568;
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.audio-section {
+  text-align: center;
+  padding: 25px;
+  background: #f7fafc;
+  border-radius: 15px;
+  border-left: 5px solid #ed8936;
+}
+
+.audio-section audio {
+  width: 100%;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
+.audio-note {
+  color: #718096;
+  font-style: italic;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+/* Status colors */
+.text-blue-600 {
+  color: #3182ce;
+}
+
+.text-green-600 {
+  color: #38a169;
+}
+
+.text-gray-600 {
+  color: #718096;
+}
+
+.text-red-600 {
+  color: #e53e3e;
+}
+
+.text-gray-800 {
+  color: #2d3748;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .App-header {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  .App-header h1 {
+    font-size: 2rem;
+  }
+  
+  .countdown-timer {
+    font-size: 2rem;
+    padding: 15px;
+  }
+  
+  .info-section,
+  .status-section,
+  .audio-section {
+    padding: 20px;
   }
 }
