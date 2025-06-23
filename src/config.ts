@@ -1,7 +1,9 @@
+import { Config, SetScheduledTimeFunction } from './types';
+
 // Configuration for the Scheduled Music Player
 // Modify these values to customize your scheduled music event
 
-export const CONFIG = {
+export const CONFIG: Config = {
   // Set your desired scheduled time (format: 'YYYY-MM-DDTHH:MM:SS')
   // This will play every year on December 31st at 23:56:26
   SCHEDULED_TIME: getNextDecember31st(),
@@ -24,7 +26,7 @@ export const CONFIG = {
 };
 
 // Helper function to get the next December 31st at 23:56:26
-function getNextDecember31st() {
+function getNextDecember31st(): Date {
   const now = new Date();
   const currentYear = now.getFullYear();
   
@@ -40,7 +42,14 @@ function getNextDecember31st() {
 }
 
 // Helper function to set scheduled time easily
-export const setScheduledTime = (year, month, day, hour, minute, second = 0) => {
+export const setScheduledTime: SetScheduledTimeFunction = (
+  year: number,
+  month: number,
+  day: number,
+  hour: number,
+  minute: number,
+  second: number = 0
+): Date => {
   return new Date(year, month - 1, day, hour, minute, second);
 };
 

@@ -1,19 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CONFIG } from '../config';
+import { PlayerStatus } from '../types';
 
-const ScheduledMusicPlayer = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const [status, setStatus] = useState('loading');
-  const [timeUntilPlay, setTimeUntilPlay] = useState(null);
-  const [playbackOffset, setPlaybackOffset] = useState(0);
-  const audioRef = useRef(null);
-  const intervalRef = useRef(null);
+const ScheduledMusicPlayer: React.FC = () => {
+  const [currentTime, setCurrentTime] = useState<Date>(new Date());
+  const [status, setStatus] = useState<PlayerStatus>('loading');
+  const [timeUntilPlay, setTimeUntilPlay] = useState<number | null>(null);
+  const [playbackOffset, setPlaybackOffset] = useState<number>(0);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Get configuration values
   const { SCHEDULED_TIME, SONG_DURATION, SONG_URL, SONG_TITLE, ARTIST, EVENT_TITLE } = CONFIG;
 
   useEffect(() => {
-    const checkTimeAndPlay = () => {
+    const checkTimeAndPlay = (): void => {
       const now = new Date();
       setCurrentTime(now);
 
@@ -34,7 +35,7 @@ const ScheduledMusicPlayer = () => {
         
         if (audioRef.current && audioRef.current.paused) {
           audioRef.current.currentTime = offset / 1000; // Convert to seconds
-          audioRef.current.play().catch(error => {
+          audioRef.current.play().catch((error: Error) => {
             console.error('Error playing audio:', error);
             setStatus('error');
           });
@@ -60,7 +61,7 @@ const ScheduledMusicPlayer = () => {
     };
   }, [SCHEDULED_TIME, SONG_DURATION]);
 
-  const formatTime = (milliseconds) => {
+  const formatTime = (milliseconds: number): string => {
     if (milliseconds <= 0) return '00:00:00';
     
     const hours = Math.floor(milliseconds / (1000 * 60 * 60));
@@ -70,11 +71,11 @@ const ScheduledMusicPlayer = () => {
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  const formatDateTime = (date) => {
+  const formatDateTime = (date: Date): string => {
     return date.toLocaleString();
   };
 
-  const getStatusMessage = () => {
+  const getStatusMessage = (): string => {
     switch (status) {
       case 'loading':
         return 'Loading...';
@@ -91,7 +92,7 @@ const ScheduledMusicPlayer = () => {
     }
   };
 
-  const getStatusColor = () => {
+  const getStatusColor = (): string => {
     switch (status) {
       case 'waiting':
         return 'text-blue-600';

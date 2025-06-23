@@ -1,6 +1,6 @@
 # Scheduled Music Player - Un Año Más
 
-A React application that automatically plays "Un Año Más" by Mecano at 23:56:26 on December 31st (any year). Perfect for New Year countdown events and celebrations.
+A React TypeScript application that automatically plays "Un Año Más" by Mecano at 23:56:26 on December 31st (any year). Perfect for New Year countdown events and celebrations.
 
 ## Features
 
@@ -9,6 +9,7 @@ A React application that automatically plays "Un Año Más" by Mecano at 23:56:2
 - **Real-time Countdown**: Shows a live countdown timer when waiting for the scheduled time
 - **Responsive Design**: Works on desktop and mobile devices
 - **Year-Agnostic**: Works every year automatically - no need to update the date
+- **TypeScript**: Fully typed for better development experience and code safety
 
 ## How It Works
 
@@ -38,8 +39,8 @@ A React application that automatically plays "Un Año Más" by Mecano at 23:56:2
 
 The app is pre-configured for "Un Año Más" by Mecano:
 
-```javascript
-export const CONFIG = {
+```typescript
+export const CONFIG: Config = {
   // Automatically sets to next December 31st at 23:56:26
   SCHEDULED_TIME: getNextDecember31st(),
   
@@ -72,6 +73,28 @@ public/
     └── un-ano-mas-mecano.mp3  ← Your song file here
 ```
 
+## TypeScript Features
+
+- **Type Safety**: All components and functions are properly typed
+- **Interface Definitions**: Clear interfaces for configuration and state
+- **Type Guards**: Proper type checking for all data structures
+- **IntelliSense**: Full IDE support with autocomplete and error detection
+
+### Type Definitions
+
+```typescript
+interface Config {
+  SCHEDULED_TIME: Date;
+  SONG_DURATION: number;
+  SONG_URL: string;
+  SONG_TITLE: string;
+  ARTIST: string;
+  EVENT_TITLE: string;
+}
+
+type PlayerStatus = 'loading' | 'waiting' | 'playing' | 'expired' | 'error';
+```
+
 ## Use Cases
 
 - **New Year Countdown**: Perfect for playing "Un Año Más" at the traditional Spanish New Year time
@@ -81,11 +104,30 @@ public/
 
 ## Technical Details
 
+- **React 19**: Latest React with hooks and functional components
+- **TypeScript**: Full type safety and modern JavaScript features
 - **React Hooks**: Uses `useState`, `useEffect`, and `useRef` for state management
 - **Time Calculations**: Precise millisecond-level timing for accurate playback
 - **Audio API**: Uses HTML5 `<audio>` element with programmatic control
 - **Responsive CSS**: Modern styling with gradient backgrounds and card layouts
 - **Auto-Year Detection**: Automatically calculates the next December 31st
+
+## Development
+
+### Available Scripts
+
+- `npm start` - Start development server
+- `npm run build` - Build for production
+- `npm test` - Run tests
+- `npm run eject` - Eject from Create React App
+
+### TypeScript Configuration
+
+The project uses a strict TypeScript configuration with:
+- Strict type checking
+- React JSX support
+- Modern ES6+ features
+- DOM type definitions
 
 ## Browser Compatibility
 
@@ -105,6 +147,11 @@ public/
 - The app uses the client's system time
 - For precise timing, ensure the client's clock is synchronized
 - The song will play at exactly 23:56:26 on December 31st
+
+### TypeScript Errors
+- Run `npm start` to see TypeScript compilation errors
+- Check that all imports are properly typed
+- Ensure all function parameters have proper type annotations
 
 ### Build for Production
 ```bash
