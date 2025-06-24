@@ -167,6 +167,10 @@
   color: #38a169;
 }
 
+.text-orange-600 {
+  color: #dd6b20;
+}
+
 .text-gray-600 {
   color: #718096;
 }
@@ -177,6 +181,53 @@
 
 .text-gray-800 {
   color: #2d3748;
+}
+
+/* Autoplay blocked section */
+.autoplay-blocked {
+  margin-top: 20px;
+  padding: 20px;
+  background: #fff3cd;
+  border: 2px solid #ffc107;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.autoplay-message {
+  color: #856404;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.play-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.play-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.play-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+}
+
+.play-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
 }
 
 /* Responsive design */
@@ -199,5 +250,19 @@
   .status-section,
   .audio-section {
     padding: 20px;
+  }
+
+  .play-button {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    min-width: 180px;
+  }
+
+  .autoplay-blocked {
+    padding: 15px;
+  }
+
+  .autoplay-message {
+    font-size: 1rem;
   }
 }
