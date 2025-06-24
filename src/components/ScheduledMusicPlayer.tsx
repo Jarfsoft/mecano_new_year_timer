@@ -9,6 +9,9 @@ const ScheduledMusicPlayer: React.FC = () => {
   const [playbackOffset, setPlaybackOffset] = useState<number>(0);
   const [showPlayButton, setShowPlayButton] = useState<boolean>(false);
   const [autoplayBlocked, setAutoplayBlocked] = useState<boolean>(false);
+  const [showNewYearModal, setShowNewYearModal] = useState<boolean>(false);
+  const [newYearCountdown, setNewYearCountdown] = useState<number>(0);
+  const [showFelizAnoNuevo, setShowFelizAnoNuevo] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -38,6 +41,11 @@ const ScheduledMusicPlayer: React.FC = () => {
     playAudio(playbackOffset);
   };
 
+  const closeNewYearModal = (): void => {
+    setShowNewYearModal(false);
+    setShowFelizAnoNuevo(false);
+  };
+
   useEffect(() => {
     const checkTimeAndPlay = (): void => {
       const now = new Date();
@@ -45,6 +53,26 @@ const ScheduledMusicPlayer: React.FC = () => {
 
       const timeDiff = SCHEDULED_TIME.getTime() - now.getTime();
       const songEndTime = SCHEDULED_TIME.getTime() + SONG_DURATION;
+      
+      // Calculate time until New Year (midnight)
+      const newYearTime = new Date(SCHEDULED_TIME.getFullYear() + 1, 0, 1, 0, 0, 0);
+      const timeUntilNewYear = newYearTime.getTime() - now.getTime();
+
+      // Show modal in the last 10 seconds before New Year
+      if (timeUntilNewYear > 0 && timeUntilNewYear <= 10000) {
+        setShowNewYearModal(true);
+        setNewYearCountdown(Math.ceil(timeUntilNewYear / 1000));
+        setShowFelizAnoNuevo(false);
+      } else if (timeUntilNewYear <= 0 && timeUntilNewYear > -15000) {
+        // Show "Feliz Año Nuevo" for 5 seconds after New Year
+        setShowNewYearModal(true);
+        setShowFelizAnoNuevo(true);
+        setNewYearCountdown(0);
+      } else if (timeUntilNewYear <= -15000) {
+        // Auto-close modal after 15 seconds of "Feliz Año Nuevo"
+        setShowNewYearModal(false);
+        setShowFelizAnoNuevo(false);
+      }
 
       if (timeDiff > 0) {
         // Before scheduled time - wait
@@ -208,6 +236,42 @@ const ScheduledMusicPlayer: React.FC = () => {
           }
         </div>
       </div>
+
+      {/* New Year Modal */}
+      {showNewYearModal && (
+        <div className="new-year-modal">
+          <div className="modal-overlay" onClick={showFelizAnoNuevo ? closeNewYearModal : undefined}>
+            {!showFelizAnoNuevo ? (
+              <div className="countdown-container">
+                <div className="modal-countdown">
+                  {newYearCountdown}
+                </div>
+              </div>
+            ) : (
+              <div className="feliz-ano-nuevo-container">
+                <div className="fireworks-background">
+                  <iframe 
+                    title="Feliz Año Nuevo"
+                    src="https://giphy.com/embed/DgLwPZVu5tT32" 
+                    width="100%" 
+                    height="100%" 
+                    style={{position: 'absolute', top: 0, left: 0}} 
+                    frameBorder="0" 
+                    className="giphy-embed" 
+                    allowFullScreen
+                  />
+                </div>
+                <div className="feliz-ano-nuevo">
+                  ¡Feliz Año Nuevo!
+                </div>
+                <button className="close-modal-button" onClick={closeNewYearModal}>
+                  ✕ Cerrar
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
