@@ -59,11 +59,11 @@ const ScheduledMusicPlayer: React.FC<ScheduledMusicPlayerProps> = ({ onNewYearMo
         if (timeUntilNewYear > 0 && timeUntilNewYear <= 10000) {
           // Show modal in the last 10 seconds before New Year
           onNewYearModalChange(true, false, Math.ceil(timeUntilNewYear / 1000));
-        } else if (timeUntilNewYear <= 0 && timeUntilNewYear > -55000) {
-          // Show "Feliz Año Nuevo" for 55 seconds after New Year
+        } else if (timeUntilNewYear <= 0 && timeUntilNewYear > -57000) {
+          // Show "Feliz Año Nuevo" for 57 seconds after New Year
           onNewYearModalChange(true, true, 0);
-        } else if (timeUntilNewYear <= -55000) {
-          // Auto-close modal after 55 seconds of "Feliz Año Nuevo"
+        } else if (timeUntilNewYear <= -57000) {
+          // Auto-close modal after 57 seconds of "Feliz Año Nuevo"
           onNewYearModalChange(false, false, 0);
         }
       }

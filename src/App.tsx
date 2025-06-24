@@ -13,11 +13,6 @@ const App: React.FC = () => {
     setNewYearCountdown(countdown);
   };
 
-  const closeNewYearModal = (): void => {
-    setShowNewYearModal(false);
-    setShowFelizAnoNuevo(false);
-  };
-
   return (
     <div className="App">
       <header className="App-header">
@@ -28,7 +23,7 @@ const App: React.FC = () => {
       {/* New Year Modal */}
       {showNewYearModal && (
         <div className="new-year-modal">
-          <div className="modal-overlay" onClick={showFelizAnoNuevo ? closeNewYearModal : undefined}>
+          <div className="modal-overlay">
             {!showFelizAnoNuevo ? (
               <div className="countdown-container">
                 <div className="modal-countdown">
@@ -47,9 +42,6 @@ const App: React.FC = () => {
                 <div className="feliz-ano-nuevo">
                   ¡Feliz Año Nuevo!
                 </div>
-                <button className="close-modal-button" onClick={closeNewYearModal}>
-                  ✕ Cerrar
-                </button>
               </div>
             )}
           </div>

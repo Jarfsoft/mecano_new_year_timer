@@ -3,14 +3,14 @@ import { Config, SetScheduledTimeFunction } from './types';
 // Configuration for the Scheduled Music Player
 // Modify these values to customize your scheduled music event
 
-const _SONG_DURATION = 269000;
+const _SONG_DURATION = 270000;
 
 export const CONFIG: Config = {
   // Set your desired scheduled time (format: 'YYYY-MM-DDTHH:MM:SS')
   // This will play every year on December 31st at 23:56:25
   SCHEDULED_TIME: getNextDecember31st(),
   
-  // Song duration in milliseconds (269 seconds = 269000 milliseconds)
+  // Song duration in milliseconds (270 seconds = 270000 milliseconds)
   SONG_DURATION: _SONG_DURATION,
   
   // URL to your audio file

@@ -384,32 +384,6 @@
   }
 }
 
-.close-modal-button {
-  position: relative;
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.9);
-  color: #333;
-  border: none;
-  padding: 15px 30px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  border-radius: 25px;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.close-modal-button:hover {
-  background: rgba(255, 255, 255, 1);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-}
-
-.close-modal-button:active {
-  transform: translateY(0);
-}
-
 /* Responsive design for modal */
 @media (max-width: 768px) {
   .modal-countdown {
