@@ -238,10 +238,10 @@ const ScheduledMusicPlayer: React.FC = () => {
       </div>
 
       {/* New Year Modal */}
-      {showNewYearModal && (
+      {!showNewYearModal && (
         <div className="new-year-modal">
           <div className="modal-overlay" onClick={showFelizAnoNuevo ? closeNewYearModal : undefined}>
-            {!showFelizAnoNuevo ? (
+            {showFelizAnoNuevo ? (
               <div className="countdown-container">
                 <div className="modal-countdown">
                   {newYearCountdown}
@@ -250,15 +250,10 @@ const ScheduledMusicPlayer: React.FC = () => {
             ) : (
               <div className="feliz-ano-nuevo-container">
                 <div className="fireworks-background">
-                  <iframe 
-                    title="Feliz Año Nuevo"
-                    src="https://giphy.com/embed/DgLwPZVu5tT32" 
-                    width="100%" 
-                    height="100%" 
-                    style={{position: 'absolute', top: 0, left: 0}} 
-                    frameBorder="0" 
-                    className="giphy-embed" 
-                    allowFullScreen
+                  <img 
+                    src="/images/fireworks.webp" 
+                    alt="Fireworks celebration"
+                    className="fireworks-image"
                   />
                 </div>
                 <div className="feliz-ano-nuevo">
