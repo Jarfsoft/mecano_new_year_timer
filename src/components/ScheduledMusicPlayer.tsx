@@ -2,16 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { CONFIG } from '../config';
 import { PlayerStatus } from '../types';
 
-const ScheduledMusicPlayer: React.FC = () => {
+interface ScheduledMusicPlayerProps {
+  onNewYearModalChange?: (showModal: boolean, showFelizAnoNuevo: boolean, countdown: number) => void;
+}
+
+const ScheduledMusicPlayer: React.FC<ScheduledMusicPlayerProps> = ({ onNewYearModalChange }) => {
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
   const [status, setStatus] = useState<PlayerStatus>('loading');
   const [timeUntilPlay, setTimeUntilPlay] = useState<number | null>(null);
   const [playbackOffset, setPlaybackOffset] = useState<number>(0);
   const [showPlayButton, setShowPlayButton] = useState<boolean>(false);
   const [autoplayBlocked, setAutoplayBlocked] = useState<boolean>(false);
-  const [showNewYearModal, setShowNewYearModal] = useState<boolean>(false);
-  const [newYearCountdown, setNewYearCountdown] = useState<number>(0);
-  const [showFelizAnoNuevo, setShowFelizAnoNuevo] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -41,11 +42,6 @@ const ScheduledMusicPlayer: React.FC = () => {
     playAudio(playbackOffset);
   };
 
-  const closeNewYearModal = (): void => {
-    setShowNewYearModal(false);
-    setShowFelizAnoNuevo(false);
-  };
-
   useEffect(() => {
     const checkTimeAndPlay = (): void => {
       const now = new Date();
@@ -58,20 +54,18 @@ const ScheduledMusicPlayer: React.FC = () => {
       const newYearTime = new Date(SCHEDULED_TIME.getFullYear() + 1, 0, 1, 0, 0, 0);
       const timeUntilNewYear = newYearTime.getTime() - now.getTime();
 
-      // Show modal in the last 10 seconds before New Year
-      if (timeUntilNewYear > 0 && timeUntilNewYear <= 10000) {
-        setShowNewYearModal(true);
-        setNewYearCountdown(Math.ceil(timeUntilNewYear / 1000));
-        setShowFelizAnoNuevo(false);
-      } else if (timeUntilNewYear <= 0 && timeUntilNewYear > -15000) {
-        // Show "Feliz Año Nuevo" for 5 seconds after New Year
-        setShowNewYearModal(true);
-        setShowFelizAnoNuevo(true);
-        setNewYearCountdown(0);
-      } else if (timeUntilNewYear <= -15000) {
-        // Auto-close modal after 15 seconds of "Feliz Año Nuevo"
-        setShowNewYearModal(false);
-        setShowFelizAnoNuevo(false);
+      // Notify parent component about modal state
+      if (onNewYearModalChange) {
+        if (timeUntilNewYear > 0 && timeUntilNewYear <= 10000) {
+          // Show modal in the last 10 seconds before New Year
+          onNewYearModalChange(true, false, Math.ceil(timeUntilNewYear / 1000));
+        } else if (timeUntilNewYear <= 0 && timeUntilNewYear > -55000) {
+          // Show "Feliz Año Nuevo" for 55 seconds after New Year
+          onNewYearModalChange(true, true, 0);
+        } else if (timeUntilNewYear <= -55000) {
+          // Auto-close modal after 55 seconds of "Feliz Año Nuevo"
+          onNewYearModalChange(false, false, 0);
+        }
       }
 
       if (timeDiff > 0) {
@@ -112,7 +106,7 @@ const ScheduledMusicPlayer: React.FC = () => {
         clearInterval(intervalRef.current);
       }
     };
-  }, [SCHEDULED_TIME, SONG_DURATION]);
+  }, [SCHEDULED_TIME, SONG_DURATION, onNewYearModalChange]);
 
   const formatTime = (milliseconds: number): string => {
     if (milliseconds <= 0) return '00:00:00:00';
@@ -236,37 +230,6 @@ const ScheduledMusicPlayer: React.FC = () => {
           }
         </div>
       </div>
-
-      {/* New Year Modal */}
-      {!showNewYearModal && (
-        <div className="new-year-modal">
-          <div className="modal-overlay" onClick={showFelizAnoNuevo ? closeNewYearModal : undefined}>
-            {showFelizAnoNuevo ? (
-              <div className="countdown-container">
-                <div className="modal-countdown">
-                  {newYearCountdown}
-                </div>
-              </div>
-            ) : (
-              <div className="feliz-ano-nuevo-container">
-                <div className="fireworks-background">
-                  <img 
-                    src="/images/fireworks.webp" 
-                    alt="Fireworks celebration"
-                    className="fireworks-image"
-                  />
-                </div>
-                <div className="feliz-ano-nuevo">
-                  ¡Feliz Año Nuevo!
-                </div>
-                <button className="close-modal-button" onClick={closeNewYearModal}>
-                  ✕ Cerrar
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
     </div>
   );
 };
