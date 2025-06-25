@@ -1,10 +1,10 @@
 # Scheduled Music Player - Un Año Más
 
-A React TypeScript application that automatically plays "Un Año Más" by Mecano at 23:56:26 on December 31st (any year). Perfect for New Year countdown events and celebrations.
+A React TypeScript application that automatically plays "Un Año Más" by Mecano at 23:56:25 on December 31st (any year). Perfect for New Year countdown events and celebrations.
 
 ## Features
 
-- **Scheduled Playback**: Automatically plays "Un Año Más" at 23:56:26 on December 31st
+- **Scheduled Playback**: Automatically plays "Un Año Más" at 23:56:25 on December 31st
 - **Smart Offset Calculation**: If the page loads after the scheduled time but within the song's duration, it starts playback from the appropriate timestamp
 - **Real-time Countdown**: Shows a live countdown timer when waiting for the scheduled time
 - **Responsive Design**: Works on desktop and mobile devices
@@ -14,8 +14,8 @@ A React TypeScript application that automatically plays "Un Año Más" by Mecano
 ## How It Works
 
 1. **Before Scheduled Time**: The app shows a countdown timer and waits
-2. **At 23:56:26 on December 31st**: "Un Año Más" automatically starts playing
-3. **Late Loading**: If you load the page after 23:56:26 but before the song ends (4:29 later), it starts from the correct offset
+2. **At 23:56:25 on December 31st**: "Un Año Más" automatically starts playing
+3. **Late Loading**: If you load the page after 23:56:25 but before the song ends (4:30 later), it starts from the correct offset
 4. **After Song Duration**: The app shows that the scheduled time has passed
 
 ## Quick Start
@@ -44,8 +44,8 @@ export const CONFIG: Config = {
   // Automatically sets to next December 31st at 23:56:26
   SCHEDULED_TIME: getNextDecember31st(),
   
-  // Song duration: 269 seconds (4 minutes 29 seconds)
-  SONG_DURATION: 269000,
+  // Song duration: 270 seconds (4 minutes 30 seconds)
+  SONG_DURATION: 270000,
   
   // Song file location
   SONG_URL: '/audio/un-ano-mas-mecano.mp3',
@@ -59,7 +59,7 @@ export const CONFIG: Config = {
 
 ### Audio File Setup
 
-1. **Get the song**: Obtain "Un Año Más" by Mecano (269 seconds duration)
+1. **Get the song**: Obtain "Un Año Más" by Mecano (270 seconds duration)
 2. **Rename it**: Save as `un-ano-mas-mecano.mp3`
 3. **Place it**: Put the file in `public/audio/` folder
 4. **Test it**: The app will automatically use the file

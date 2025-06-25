@@ -15,9 +15,18 @@ const ScheduledMusicPlayer: React.FC<ScheduledMusicPlayerProps> = ({ onNewYearMo
   const [autoplayBlocked, setAutoplayBlocked] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const hasShownAlertRef = useRef<boolean>(false);
 
   // Get configuration values
   const { SCHEDULED_TIME, SONG_DURATION, SONG_URL, SONG_TITLE, ARTIST, EVENT_TITLE } = CONFIG;
+
+  // Show one-time alert on component mount
+  useEffect(() => {
+    if (!hasShownAlertRef.current) {
+      alert('Nota: Tu navegador podría bloquear la reproducción automática. Si la canción no empieza, toca el botón de reproducir; se retomará desde el punto correcto.\n\nNote: Your browser may block automatic playback. If the song doesn\'t start, please tap play—it\'ll resume from the right moment.');
+      hasShownAlertRef.current = true;
+    }
+  }, []);
 
   const playAudio = async (offset: number = 0): Promise<void> => {
     if (audioRef.current) {
