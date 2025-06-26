@@ -60,7 +60,7 @@ const ScheduledMusicPlayer: React.FC<ScheduledMusicPlayerProps> = ({ onNewYearMo
       const songEndTime = SCHEDULED_TIME.getTime() + SONG_DURATION;
       
       // Calculate time until New Year (midnight)
-      const newYearTime = new Date(SCHEDULED_TIME.getFullYear() + 1, 0, 1, 0, 0, 0);
+      const newYearTime = new Date(SCHEDULED_TIME.getFullYear(), 5, 26, 15, 0, 0);
       const timeUntilNewYear = newYearTime.getTime() - now.getTime();
 
       // Notify parent component about modal state
@@ -226,11 +226,13 @@ const ScheduledMusicPlayer: React.FC<ScheduledMusicPlayerProps> = ({ onNewYearMo
 
         <div className="audio-section">
           {
-            status === 'playing' ?
+            (status === 'playing' || (status === 'waiting' && timeUntilPlay && timeUntilPlay <= 5000)) ?
               <audio
                 ref={audioRef}
                 src={SONG_URL}
                 controls
+                preload="auto"
+                style={{ display: status === 'playing' ? 'block' : 'none' }}
               />
             :
               <p className="audio-note">
