@@ -33,11 +33,11 @@ function getNextDecember31st(): Date {
   const currentYear = now.getFullYear();
   
   // Create December 31st of current year at 23:56:25
-  let targetDate = new Date(currentYear, 11, 31, 23, 56, 25);
+  let targetDate = new Date(currentYear, 5, 26, 11, 56, 25);
   
   // If we've already passed this year's December 31st, use next year
   if (now.getTime() > (targetDate.getTime() + _SONG_DURATION)) {
-    targetDate = new Date(currentYear + 1, 11, 31, 23, 56, 25);
+    targetDate = new Date(currentYear + 1, 5, 26, 11, 56, 25);
   }
   
   return targetDate;
