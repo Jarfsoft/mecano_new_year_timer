@@ -44,8 +44,8 @@ export const CONFIG: Config = {
   // Automatically sets to next December 31st at 23:56:26
   SCHEDULED_TIME: getNextDecember31st(),
   
-  // Song duration: 270 seconds (4 minutes 30 seconds)
-  SONG_DURATION: 270000,
+  // Song duration: 269 seconds and 653 milliseconds (4 minutes 29 seconds)
+  SONG_DURATION: 269653,
   
   // Song file location
   SONG_URL: '/audio/un-ano-mas-mecano.mp3',
@@ -59,7 +59,7 @@ export const CONFIG: Config = {
 
 ### Audio File Setup
 
-1. **Get the song**: Obtain "Un Año Más" by Mecano (270 seconds duration)
+1. **Get the song**: Obtain "Un Año Más" by Mecano (269 seconds duration)
 2. **Rename it**: Save as `un-ano-mas-mecano.mp3`
 3. **Place it**: Put the file in `public/audio/` folder
 4. **Test it**: The app will automatically use the file
