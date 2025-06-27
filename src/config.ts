@@ -34,10 +34,10 @@ function getNextDecember31st(): Date {
   const currentYear = now.getFullYear();
   
   // Create December 31st of current year, with the target time of the song before midnight
-  let targetDate = new Date(currentYear, 5, 27, 8, 30, 0).getTime() - TARGET_TIMESTAMP_MS;
+  let targetDate = new Date(currentYear, 0, 1, 0, 0, 0).getTime() - TARGET_TIMESTAMP_MS;
   // If we've already passed this year's December 31st, use next year
   if (now.getTime() > (targetDate + _SONG_DURATION)) {
-    targetDate = new Date(currentYear + 1, 5, 27, 8, 30, 0).getTime() - TARGET_TIMESTAMP_MS;
+    targetDate = new Date(currentYear + 1, 0, 1, 0, 0, 0).getTime() - TARGET_TIMESTAMP_MS;
   }
   
   return new Date(targetDate);
