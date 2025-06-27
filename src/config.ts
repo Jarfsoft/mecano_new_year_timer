@@ -4,6 +4,7 @@ import { Config, SetScheduledTimeFunction } from './types';
 // Modify these values to customize your scheduled music event
 
 const _SONG_DURATION = 269653;
+const TARGET_TIMESTAMP_MS = 214400;
 
 export const CONFIG: Config = {
   // Set your desired scheduled time (format: 'YYYY-MM-DDTHH:MM:SS')
@@ -27,20 +28,19 @@ export const CONFIG: Config = {
   EVENT_TITLE: 'New Year Countdown - Un Año Más'
 };
 
-// Helper function to get the next December 31st at 23:56:25
+// Helper function to get the next December 31st, with the target time of the song before midnight
 function getNextDecember31st(): Date {
   const now = new Date();
   const currentYear = now.getFullYear();
   
-  // Create December 31st of current year at 23:56:25
-  let targetDate = new Date(currentYear, 5, 26, 14, 56, 25);
-  
+  // Create December 31st of current year, with the target time of the song before midnight
+  let targetDate = new Date(currentYear, 5, 27, 8, 0, 0).getTime() - TARGET_TIMESTAMP_MS;
   // If we've already passed this year's December 31st, use next year
-  if (now.getTime() > (targetDate.getTime() + _SONG_DURATION)) {
-    targetDate = new Date(currentYear + 1, 5, 26, 14, 56, 25);
+  if (now.getTime() > (targetDate + _SONG_DURATION)) {
+    targetDate = new Date(currentYear + 1, 5, 27, 8, 0, 0).getTime() - TARGET_TIMESTAMP_MS;
   }
   
-  return targetDate;
+  return new Date(targetDate);
 }
 
 // Helper function to set scheduled time easily
