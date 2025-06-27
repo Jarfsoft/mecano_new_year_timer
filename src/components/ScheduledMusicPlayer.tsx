@@ -60,7 +60,7 @@ const ScheduledMusicPlayer: React.FC<ScheduledMusicPlayerProps> = ({ onNewYearMo
       const songEndTime = SCHEDULED_TIME.getTime() + SONG_DURATION;
       
       // Calculate time until New Year (midnight)
-      const newYearTime = new Date(SCHEDULED_TIME.getFullYear(), 5, 27, 8, 0, 0);
+      const newYearTime = new Date(SCHEDULED_TIME.getFullYear(), 5, 27, 8, 30, 0);
       const timeUntilNewYear = newYearTime.getTime() - now.getTime();
 
       // Notify parent component about modal state

@@ -41,7 +41,7 @@ The app is pre-configured for "Un Año Más" by Mecano:
 
 ```typescript
 export const CONFIG: Config = {
-  // Automatically sets to next December 31st at 23:56:26
+  // Automatically sets to next December 31st at 23:56:25
   SCHEDULED_TIME: getNextDecember31st(),
   
   // Song duration: 269 seconds and 653 milliseconds (4 minutes 29 seconds)

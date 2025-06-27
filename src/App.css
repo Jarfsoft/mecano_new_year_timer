@@ -416,3 +416,142 @@
     font-size: 1rem;
   }
 }
+
+/* Welcome Screen */
+.welcome-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.welcome-container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.welcome-container h1 {
+  color: #2d3748;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.welcome-description {
+  color: #4a5568;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.welcome-description-en {
+  color: #718096;
+  font-size: 1rem;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.welcome-info {
+  background: #f7fafc;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 30px 0;
+  border-left: 5px solid #667eea;
+}
+
+.welcome-info p {
+  color: #4a5568;
+  margin: 10px 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.start-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 20px 40px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+  margin: 20px 0;
+  min-width: 250px;
+}
+
+.start-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.start-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.start-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+.interaction-note {
+  color: #718096;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 15px;
+}
+
+/* Responsive design for welcome screen */
+@media (max-width: 768px) {
+  .welcome-container {
+    padding: 30px 20px;
+  }
+  
+  .welcome-container h1 {
+    font-size: 2rem;
+  }
+  
+  .welcome-description {
+    font-size: 1.1rem;
+  }
+  
+  .start-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    min-width: 200px;
+  }
+  
+  .welcome-info {
+    padding: 20px;
+  }
+  
+  .welcome-info p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-container {
+    padding: 25px 15px;
+  }
+  
+  .welcome-container h1 {
+    font-size: 1.8rem;
+  }
+  
+  .start-button {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    min-width: 180px;
+  }
+}
