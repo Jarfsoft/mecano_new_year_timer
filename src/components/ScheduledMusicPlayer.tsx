@@ -227,13 +227,21 @@ const ScheduledMusicPlayer: React.FC<ScheduledMusicPlayerProps> = ({ onNewYearMo
         <div className="audio-section">
           {
             (status === 'playing' || (status === 'waiting' && timeUntilPlay && timeUntilPlay <= 5000)) ?
-              <audio
-                ref={audioRef}
-                src={SONG_URL}
-                controls
-                preload="auto"
-                style={{ display: status === 'playing' ? 'block' : 'none' }}
-              />
+              <>
+                <audio
+                  ref={audioRef}
+                  src={SONG_URL}
+                  controls
+                  preload="auto"
+                  style={{ display: status === 'playing' ? 'block' : 'none' }}
+                />
+                <p
+                  className="audio-note"
+                  style={{ display: status === 'playing' ? 'none' : 'block' }}
+                >
+                  Getting things ready...
+                </p>
+              </>
             :
               <p className="audio-note">
                 Audio controls will appear when the song starts playing

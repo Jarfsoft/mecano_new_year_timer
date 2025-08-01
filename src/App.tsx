@@ -54,7 +54,7 @@ const App: React.FC = () => {
               Welcome to the New Year countdown with "Un Año Más" by Mecano
             </p>
             <div className="welcome-info">
-              <p>📅 Se reproducirá automáticamente el 31 de diciembre a las 23:56:26</p>
+              <p>📅 Se reproducirá automáticamente el 31 de diciembre a las 23:56:25</p>
               <p>🎶 Duración: 4 minutos y 29 segundos</p>
               <p>🎆 Incluye cuenta regresiva de Año Nuevo</p>
             </div>
@@ -99,9 +99,6 @@ const App: React.FC = () => {
                 <div className="feliz-ano-nuevo">
                   ¡Feliz Año Nuevo!
                 </div>
-                <button className="close-modal-button" onClick={closeNewYearModal}>
-                  ✕ Cerrar
-                </button>
               </div>
             )}
           </div>

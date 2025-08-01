@@ -56,6 +56,6 @@ export const setScheduledTime: SetScheduledTimeFunction = (
 };
 
 // Example usage:
-// SCHEDULED_TIME: setScheduledTime(2024, 12, 31, 23, 56, 26) // December 31st at 23:56:26
+// SCHEDULED_TIME: setScheduledTime(2024, 12, 31, 23, 56, 25) // December 31st at 23:56:25
 // SCHEDULED_TIME: setScheduledTime(2024, 1, 1, 0, 0, 0) // New Year's Day
 // SCHEDULED_TIME: setScheduledTime(2024, 7, 4, 20, 0, 0) // July 4th at 8 PM 

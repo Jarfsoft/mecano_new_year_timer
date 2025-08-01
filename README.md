@@ -2,6 +2,10 @@
 
 A React TypeScript application that automatically plays "Un Año Más" by Mecano at 23:56:25 on December 31st (any year). Perfect for New Year countdown events and celebrations.
 
+## Live Demo
+
+### [Another Year](http://another-year.netlify.app)
+
 ## Features
 
 - **Scheduled Playback**: Automatically plays "Un Año Más" at 23:56:25 on December 31st
@@ -146,7 +150,7 @@ The project uses a strict TypeScript configuration with:
 ### Timing Issues
 - The app uses the client's system time
 - For precise timing, ensure the client's clock is synchronized
-- The song will play at exactly 23:56:26 on December 31st
+- The song will play at exactly 23:56:25 on December 31st
 
 ### TypeScript Errors
 - Run `npm start` to see TypeScript compilation errors
